@@ -71,7 +71,10 @@ if (fs.existsSync(batchinfofile)) {
    
    let blockchainresponse = request(options.method, options.baseUrl + options.uri, options.headers)
    let lastblockheight = parseInt(JSON.parse(blockchainresponse.body).height) 
+   
+   if (paymentstopblock > lastblockheight)  {
    paymentstopblock = lastblockheight - 1
+   }
 
    if (paymentstopblock > lastblockheight) {
 	let blocksleft = paymentstopblock - lastblockheight
